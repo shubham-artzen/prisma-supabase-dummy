@@ -1,0 +1,74 @@
+node_modules
+# Keep environment variables out of version control
+.env
+
+npx prisma format 
+npx prisma migrate dev
+npm i @prisma/client
+npx prisma generate
+ const user = await prisma.user.createMany({
+   data: [
+     {
+       name: "shub",
+       age: 22,
+       email: "name@multiple.com3",
+     },
+     {
+       name: "shub",
+       age: 22,
+       email: "multiple@withselect.com2",
+     },
+     {
+       name: "shub",
+       age: 22,
+       email: "multiqple@withselect.com1",
+     },
+   ],
+   })
+
+select will only give what u write here but include will include additional to the main one
+ you can't do both at the same time.
+
+ include: {
+   UserPreference: true,
+ },
+ }); findMany or findFirst
+ const user = await prisma.user.findMany({
+   where: {
+     name: "shub",
+     age: 22,
+     email: "multiqple@withselect.com1",
+   },
+ });
+
+ const user = await prisma.user.findUnique({
+   where: {
+     email: "name@multiple.com3",
+   },
+ });
+
+ const user = await prisma.user.findUnique({
+   where: {
+     name_email: {
+       name: "shub",
+       email: "multiple@withselect.com2",
+     },
+   },
+ }); we have used @@unique([name, email]) in modal
+
+ const user = await prisma.user.findMany();
+   const user = await prisma.user.deleteMany();
+  console.log({ user });
+
+
+  const user = await prisma.user.findMany({
+    where: {
+      name: "shub",
+    },
+    orderBy: {
+      age: "desc",
+    },
+    take: 2,
+    skip: 1,
+    distinct: ["name", "age"],
+  });
